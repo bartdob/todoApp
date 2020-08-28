@@ -1,5 +1,6 @@
 from django.db import models
+from django.utils.timezone import now
 
 class TodoItem(models.Model):
     content = models.TextField()
-    data = models.DateTimeField()
+    date = models.DateTimeField(default=now, editable=False)

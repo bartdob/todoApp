@@ -10,29 +10,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container text-center border border-info">
         <h1 class="border border-info p-5 m-5 text-center"> Todo App<h1>
-            <div class="container">
-
-            <ul class="text-left p-2">    
-                {% for todo_item in all_items %}
-                    <li class="form-inline bg-light d-flex justify-content-between text-center" id="liinput">
-                    <div class="left">{{todo_item.data}} /{{todo_item.content}}</div> 
-                    <div class="right">
-                    <form action="/deleteTodo/{{todo_item.id}}/"
-                        method="POST">{% csrf_token %}
-                    <Button type="submit" id="inputdel" class="border border-warning">del</Button>
-                    </form>
-                    </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        <div class="container" style="max-width: 500px;">
-            <form action="/addTodo/" method="POST" class="text-center ">{% csrf_token %} 
-                <input type="text" name="content" class="form-control" placeholder="Note"/>
-                <Button type="submit" class="btn btn-info boder border-info">ADD</Button>
-            </form>
-        </div>
+            <div class="container text-center">
+                <ul class="p-2 border border-warning list-group text-center">    
+                        {% for todo_item in all_items %}
+                            <li class="form-inline bg-light justify-content-between" id="liinput">
+                            <div class="text-center">{{forloop.counter}} {{todo_item.date.day}} /{{todo_item.content}}</div> 
+                            
+                            <form action="/deleteTodo/{{todo_item.id}}/"
+                                method="POST">{% csrf_token %}
+                            <Button type="submit" id="inputdel" class="border border-warning">del</Button>
+                            </form>
+                            
+                            </li>
+                        {% endfor %}
+                </ul>
+                        <div class="container" style="max-width: 500px;">
+                            <form action="/addTodo/" method="POST" class="text-center ">{% csrf_token %} 
+                                <input type="text" name="content" class="form-control" placeholder="Note"/>
+                                <Button type="submit" class="btn btn-info boder border-info">ADD</Button>
+                            </form>
+                        </div>
             </div>
     </div>
 </body>
